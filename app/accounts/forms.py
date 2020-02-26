@@ -27,3 +27,9 @@ class SignupForm(UserCreationForm):
             if qs.exists():
                 raise forms.ValidationError('이미 가입된 이메일')
         return email
+
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['avatar', 'first_name', 'last_name', 'website_url', 'bio', 'phone_number', 'gender']

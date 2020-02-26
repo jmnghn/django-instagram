@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView, logout_then_login, LogoutView
 from django.shortcuts import render, redirect
 
-from .forms import SignupForm
+from .forms import SignupForm, ProfileForm
 
 login = LoginView.as_view(template_name='accounts/login_form.html')
 
@@ -40,6 +40,14 @@ def signup(request):
 
 @login_required
 def profile_edit(request):
+    if request.method == "POST":
+        form = ProfileForm(request.POST, request.FILES, instance=request.user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, '프로필을 수정/저장했습니다.')
+            return redirect('profile_edit')
+    else:
+        form = ProfileForm(instance=request.user)
     return render(request, 'accounts/profile_edit_form.html', {
-
+        'form': form,
     })
