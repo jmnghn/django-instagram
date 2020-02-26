@@ -47,7 +47,14 @@
                                       fill-rule="evenodd"></path>
                             </svg>
                         </a>
-                        <a class="p-2 text-dark" href="#">Profile</a>
+                        <a class="p-2 text-dark" href="{% url 'profile_edit' %}">
+                            {% if user.is_authenticated %}
+                                <img src="{% url 'pydenticon_image' data=user.username %}" alt="profile_image" style="width:25px;height:25px;border-radius: 50%; margin-right: 8px;">
+                                {{ user.username }}
+                            {% else %}
+                                Profile
+                            {% endif %}
+                        </a>
                     </nav>
                 </div>
             </div>
