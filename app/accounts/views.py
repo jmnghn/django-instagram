@@ -10,7 +10,8 @@ def signup(request):
         if form.is_valid():
             form.save()
             messages.success(request, '가입')
-            return redirect('/')
+            next_url = request.GET.get('next', '/')
+            return redirect(next_url)
     else:
         form = SignupForm()
     return render(request, 'accounts/signup_form.html', {

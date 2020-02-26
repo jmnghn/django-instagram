@@ -3,14 +3,8 @@
 {% block content %}
     <div class="container">
         <div class="row">
-            <div class="col-sm-12">
-                <form action="" method="post" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <table>
-                        {{ form }}
-                    </table>
-                    <input type="submit">
-                </form>
+            <div class="col-sm-8 offset-sm-2">
+                {% include 'accounts/_form.html' with submit_label='Regist' %}
             </div>
         </div>
     </div>
