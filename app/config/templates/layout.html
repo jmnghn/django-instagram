@@ -49,13 +49,8 @@
                         </a>
                         <a class="p-2 text-dark" href="{% url 'profile_edit' %}">
                             {% if user.is_authenticated %}
-                                {% if user.avatar %}
-                                    <img src="/media/{{ user.avatar }}" alt="user_avatar" style="width:28px;height:28px;border-radius: 50%; margin-right: 8px;">
-                                {% else %}
-                                    <img src="{% url 'pydenticon_image' data=user.username %}" alt="user_avatar" style="width:28px;height:28px;border-radius: 50%; margin-right: 8px;">
-                                {% endif %}
-
-                                {{ user.username }}
+                                <img src="{{ user.avatar_url }}" alt="user_avatar" style="width:28px;height:28px;border-radius: 50%; margin-right: 8px;">
+                                <b>{{ user.username }}</b>
                             {% else %}
                                 Profile
                             {% endif %}
