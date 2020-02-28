@@ -1,4 +1,5 @@
 {% extends 'layout.html' %}
+{% load thumbnail %}
 
 {% block content %}
     <div class="container">
@@ -10,15 +11,17 @@
                 {{ page_user.username }}
                 <a href="{% url 'profile_edit' %}" class="btn btn-secondary btn-sm">Profile Edit</a>
                 <hr>
-                0 post, 0 follower, 0 following
+                {{ post_list_count }} {% if post_list_count == 0 %}post{% else %}posts{% endif %},
+                0 {% if 0 == 0 %}follower{% else %}followers{% endif %},
+                0 {% if 0 == 0 %}following{% else %}followings{% endif %},
                 <hr>
                 {{ page_user.username }}
             </div>
         </div>
         <div class="row">
             {% for post in post_list %}
-                <div class="col-sm-4 pb-2">
-                    <img src="{{ post.photo.url }}" alt="{{ post.caption }}" style="width: 100%;"/>
+                <div class="col-sm-4" style="margin-bottom: 32px;">
+                    <img src="{% thumbnail post.photo 700x700 crop %}" alt="{{ post.caption }}" style="width: 100%;"/>
                 </div>
             {% endfor %}
         </div>
