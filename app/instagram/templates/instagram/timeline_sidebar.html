@@ -1,0 +1,26 @@
+<div class="mb-4">
+    <img src="{{ user.avatar_url }}" alt="avatar_url" class="rounded-circle mr-1" style="width: 40px;">
+    <span>{{ user.username }}</span>
+</div>
+
+<div class="card mb-3">
+    <div class="card-header text-muted">
+        Stories
+    </div>
+    <div class="card-body text-muted">
+        Stories from pepople you follow will show up here.
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header text-muted">
+        Suggestion for you
+    </div>
+    <div class="card-body text-muted">
+        {% for suggested_user in suggested_user_list %}
+            {% include 'instagram/timeline_sidebar_user.html' %}
+        {% empty %}
+            추천할 친구가 없습니다.
+        {% endfor %}
+    </div>
+</div>
