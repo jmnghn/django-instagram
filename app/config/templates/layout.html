@@ -4,9 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Django Instagram</title>
-    <link rel="stylesheet" href="{% static 'fontawesome-free-5.12.1-web/css/all.min.css' %}"></link>
+    <link rel="stylesheet" href="{% static 'fontawesome-free-5.12.1-web/css/all.min.css' %}">
     <link rel="stylesheet" href="{% static 'bootstrap-4.4.1-dist/css/bootstrap.min.css' %}">
     <script src="{% static 'jquery-3.4.1.min.js' %}"></script>
+    <script src="{% static 'jquery.form.min.js' %}"></script>
     <script src="{% static 'bootstrap-4.4.1-dist/js/bootstrap.min.js' %}"></script>
 </head>
 <body>
@@ -36,7 +37,8 @@
                     </h5>
 
                     <nav class="my-2 my-md-0 mr-md-3">
-                        <a class="p-2 text-dark" href="/explore/">
+{#                        <a class="p-2 text-dark" href="/explore/">#}
+                        <a class="p-2 text-dark" href="#">
                             <svg aria-label="사람 찾기" class="_8-yf5 " fill="#262626" height="24" viewBox="0 0 48 48"
                                  width="24">
                                 <path clip-rule="evenodd"
@@ -44,7 +46,8 @@
                                       fill-rule="evenodd"></path>
                             </svg>
                         </a>
-                        <a class="p-2 text-dark" href="/account/activity/">
+{#                        <a class="p-2 text-dark" href="/account/activity/">#}
+                        <a class="p-2 text-dark" href="#">
                             <svg aria-label="활동 피드" class="_8-yf5 " fill="#262626" height="24" viewBox="0 0 48 48"
                                  width="24">
                                 <path clip-rule="evenodd"
@@ -76,37 +79,37 @@
             <div class="row">
                 <div class="col-12 col-md">
                     <img class="mb-2" src="/docs/4.4/assets/brand/bootstrap-solid.svg" alt="" width="24" height="24">
-                    <small class="d-block mb-3 text-muted">© 2017-2019</small>
+                    <small class="d-block mb-3 text-muted">© djangostagram</small>
                 </div>
-                <div class="col-6 col-md">
-                    <h5>Features</h5>
-                    <ul class="list-unstyled text-small">
-                        <li><a class="text-muted" href="#">Cool stuff</a></li>
-                        <li><a class="text-muted" href="#">Random feature</a></li>
-                        <li><a class="text-muted" href="#">Team feature</a></li>
-                        <li><a class="text-muted" href="#">Stuff for developers</a></li>
-                        <li><a class="text-muted" href="#">Another one</a></li>
-                        <li><a class="text-muted" href="#">Last time</a></li>
-                    </ul>
-                </div>
-                <div class="col-6 col-md">
-                    <h5>Resources</h5>
-                    <ul class="list-unstyled text-small">
-                        <li><a class="text-muted" href="#">Resource</a></li>
-                        <li><a class="text-muted" href="#">Resource name</a></li>
-                        <li><a class="text-muted" href="#">Another resource</a></li>
-                        <li><a class="text-muted" href="#">Final resource</a></li>
-                    </ul>
-                </div>
-                <div class="col-6 col-md">
-                    <h5>About</h5>
-                    <ul class="list-unstyled text-small">
-                        <li><a class="text-muted" href="#">Team</a></li>
-                        <li><a class="text-muted" href="#">Locations</a></li>
-                        <li><a class="text-muted" href="#">Privacy</a></li>
-                        <li><a class="text-muted" href="#">Terms</a></li>
-                    </ul>
-                </div>
+{#                <div class="col-6 col-md">#}
+{#                    <h5>Features</h5>#}
+{#                    <ul class="list-unstyled text-small">#}
+{#                        <li><a class="text-muted" href="#">Cool stuff</a></li>#}
+{#                        <li><a class="text-muted" href="#">Random feature</a></li>#}
+{#                        <li><a class="text-muted" href="#">Team feature</a></li>#}
+{#                        <li><a class="text-muted" href="#">Stuff for developers</a></li>#}
+{#                        <li><a class="text-muted" href="#">Another one</a></li>#}
+{#                        <li><a class="text-muted" href="#">Last time</a></li>#}
+{#                    </ul>#}
+{#                </div>#}
+{#                <div class="col-6 col-md">#}
+{#                    <h5>Resources</h5>#}
+{#                    <ul class="list-unstyled text-small">#}
+{#                        <li><a class="text-muted" href="#">Resource</a></li>#}
+{#                        <li><a class="text-muted" href="#">Resource name</a></li>#}
+{#                        <li><a class="text-muted" href="#">Another resource</a></li>#}
+{#                        <li><a class="text-muted" href="#">Final resource</a></li>#}
+{#                    </ul>#}
+{#                </div>#}
+{#                <div class="col-6 col-md">#}
+{#                    <h5>About</h5>#}
+{#                    <ul class="list-unstyled text-small">#}
+{#                        <li><a class="text-muted" href="#">Team</a></li>#}
+{#                        <li><a class="text-muted" href="#">Locations</a></li>#}
+{#                        <li><a class="text-muted" href="#">Privacy</a></li>#}
+{#                        <li><a class="text-muted" href="#">Terms</a></li>#}
+{#                    </ul>#}
+{#                </div>#}
             </div>
         </footer>
     </div>

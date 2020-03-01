@@ -102,6 +102,10 @@ def comment_new(request, post_pk):
             comment.post = post
             comment.author = request.user
             comment.save()
+            if request.is_ajax():
+                return render(request, 'instagram/_comment.html', {
+                    'comment': comment,
+                })
             redirect_url = request.META.get('HTTP_REFERER', comment.post)
             return redirect(redirect_url)
     else:

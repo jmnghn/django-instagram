@@ -1,0 +1,10 @@
+{% load humanize %}
+
+<div class="mb-2">
+    <img src="{{ comment.author.avatar_url }}" alt="avatar_url" class="rounded-circle"
+         style="width: 25px;">
+    <a href="{% url 'instagram:user_page' comment.author.username %}"
+       style="color: inherit;"><b>{{ comment.author }}</b></a>
+    {{ comment.message }}
+    <small class="text-muted">{{ comment.created_at|naturaltime }}</small>
+</div>
