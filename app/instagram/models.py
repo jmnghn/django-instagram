@@ -14,11 +14,15 @@ class BaseModel(models.Model):
 
 
 class Post(BaseModel):
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='my_post_set', on_delete=models.CASCADE)
     photo = models.ImageField(upload_to='instagram/post/%Y/%m/%d')
     caption = models.TextField(max_length=500)
     tag_set = models.ManyToManyField('Tag', blank=True)
     location = models.CharField(max_length=100)
+    like_user_set = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_post_set', blank=True)
+
+    class Meta:
+        ordering = ['-id']
 
     def __str__(self):
         return self.caption
@@ -35,8 +39,17 @@ class Post(BaseModel):
     def get_absolute_url(self):
         return reverse('instagram:post_detail', args=[self.pk])
 
-    def save(self, *args, **kwargs):
-        super(Post, self).save(*args, **kwargs)
+    def is_like_user(self, user):
+        return self.like_user_set.filter(pk=user.pk).exists()
+
+
+class Comment(BaseModel):
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    message = models.TextField()
+
+    class Meta:
+        ordering = ['-id']
 
 
 class Tag(models.Model):

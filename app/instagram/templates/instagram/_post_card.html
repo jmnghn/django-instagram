@@ -1,3 +1,6 @@
+{% load humanize instagram_tags %}
+{% load bootstrap4 %}
+
 <div class="card">
     <div class="card-header">
         <img src="{{ post.author.avatar_url }}" alt="user_avatar"
@@ -8,12 +11,49 @@
     </div>
     <div class="card-body">
         <img src="{{ post.photo.url }}" alt="post_image" style="width: 100%;">
-    </div>
-    <div class="card-footer">
-        {% for tag in post.tag_set.all %}
-            <span class="badge badge-primary" style="padding: 4px 8px;">
+        <div>
+            {{ post.caption }}
+        </div>
+        <div>
+            {% for tag in post.tag_set.all %}
+                <span class="badge badge-primary" style="padding: 4px 8px;">
                 #{{ tag }}
             </span>
-        {% endfor %}
+            {% endfor %}
+        </div>
+        <div>
+            {% if post|is_like_user:user %}
+                <a href="{% url 'instagram:post_unlike' post.pk %}" style="color: inherit;"><i class="fas fa-heart"></i></a>
+            {% else %}
+                <a href="{% url 'instagram:post_like' post.pk %}" style="color: inherit;"><i
+                        class="far fa-heart"></i></a>
+            {% endif %}
+        </div>
+        <div class="text-muted">
+            <small>{{ post.created_at|naturaltime }}</small>
+        </div>
+        <div class="comment-list mt-3">
+            {% for comment in post.comment_set.all %}
+                <div class="mb-2">
+                    <img src="{{ comment.author.avatar_url }}" alt="avatar_url" class="rounded-circle"
+                         style="width: 25px;">
+                    <a href="{% url 'instagram:user_page' comment.author.username %}" style="color: inherit;"><b>{{ comment.author }}</b></a>
+                    {{ comment.message }}
+                    <small class="text-muted">{{ comment.created_at|naturaltime }}</small>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="card-footer">
+        <div>
+{#            <a href="{% url 'instagram:comment_new' post.pk %}">댓글 쓰기</a>#}
+
+            <form action="{% url 'instagram:comment_new' post.pk %}" method="post">
+                {% csrf_token %}
+                {% bootstrap_form comment_form %}
+                <input type="submit" value="Add Comment" class="btn btn-primary btn-block">
+            </form>
+
+        </div>
     </div>
 </div>
